@@ -57,6 +57,7 @@ public class Function {
 	 * Specifies the object instance on which the Function is called.
 	 */
 	public Any apply() {
+		//TODO: implement
 		return new Any();
 	}
 	/**
@@ -65,6 +66,7 @@ public class Function {
 	 * @return
 	 */
 	public Any apply(Any thisArg) {
+		//TODO: implement
 		return new Any();
 	}
 	/**
@@ -74,6 +76,7 @@ public class Function {
 	 * @return
 	 */
 	public Any apply(Any thisArg, ArrayList<Any> argArray) {
+		//TODO: implement
 		return new Any();
 	}
 	
@@ -82,12 +85,15 @@ public class Function {
 	 * @return
 	 */
 	public Any call() {
+		//TODO: implement
 		return new Any();
 	}
 	public Any call(Any thisArg) {
+		//TODO: implement
 		return new Any();
 	}
 	public Any call(Any thisArg, ArrayList<Any> rest) {
+		//TODO: implement
 		return new Any();
 	}
 }
