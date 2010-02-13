@@ -36,6 +36,28 @@ import android.graphics.PointF;
  */
 public class Point {
 	/**
+	 * Creates a new point.
+	 */
+	public Point() {
+		setX(0);
+		setX(0);
+	}
+	/**
+	 * Creates a new point.
+	 */
+	public Point(double x) {
+		setX(x);
+		setX(0);
+	}
+	/**
+	 * Creates a new point.
+	 */
+	public Point(double x, double y) {
+		setX(x);
+		setX(y);
+	}
+	
+	/**
 	 * Not to be used for manual/direct manipulation.
 	 * @see droid.geom.Point.setX()
 	 * @see droid.geom.Point.getX()
@@ -100,28 +122,6 @@ public class Point {
 			length = PointF.length((float) x, (float) y); 
 			return length;
 		}
-	
-	/**
-	 * Creates a new point.
-	 */
-	public Point() {
-		setX(0);
-		setX(0);
-	}
-	/**
-	 * Creates a new point.
-	 */
-	public Point(double x) {
-		setX(x);
-		setX(0);
-	}
-	/**
-	 * Creates a new point.
-	 */
-	public Point(double x, double y) {
-		setX(x);
-		setX(y);
-	}
 	
 	/**
 	 * Adds the coordinates of another point to the coordinates of this point to create a new point.
