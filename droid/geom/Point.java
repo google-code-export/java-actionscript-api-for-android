@@ -40,21 +40,21 @@ public class Point {
 	 */
 	public Point() {
 		setX(0);
-		setX(0);
+		setY(0);
 	}
 	/**
 	 * Creates a new point.
 	 */
 	public Point(double x) {
 		setX(x);
-		setX(0);
+		setY(0);
 	}
 	/**
 	 * Creates a new point.
 	 */
 	public Point(double x, double y) {
 		setX(x);
-		setX(y);
+		setY(y);
 	}
 	
 	/**
