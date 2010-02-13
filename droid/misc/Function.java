@@ -25,6 +25,8 @@
 */
 package droid.misc;
 
+import java.util.ArrayList;
+
 /**
  * Function in ActionScript 3 is not inside any package -- on Java, it needs to be.
  * @author Mj Mendoza IV
@@ -71,7 +73,7 @@ public class Function {
 	 * @param argArray
 	 * @return
 	 */
-	public Any apply(Any thisArg, Any[] argArray) {
+	public Any apply(Any thisArg, ArrayList<Any> argArray) {
 		return new Any();
 	}
 	
@@ -85,7 +87,7 @@ public class Function {
 	public Any call(Any thisArg) {
 		return new Any();
 	}
-	public Any call(Any thisArg, Any[] rest) {
+	public Any call(Any thisArg, ArrayList<Any> rest) {
 		return new Any();
 	}
 }
