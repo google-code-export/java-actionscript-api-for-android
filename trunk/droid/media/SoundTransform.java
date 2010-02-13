@@ -59,8 +59,8 @@ public class SoundTransform {
 	
 	/**
 	 * Not to be used for manual/direct manipulation.
-	 * @see droid.geom.Point.setX()
-	 * @see droid.geom.Point.getX()
+	 * @see droid.media.SoundTransform.setLeftToLeft()
+	 * @see droid.media.SoundTransform.getLeftToLeft()
 	 */
 	public double leftToLeft;
 		/**
@@ -68,6 +68,7 @@ public class SoundTransform {
 		 * @return
 		 */
 		public double getLeftToLeft() {
+			setLeftToLeft(leftToLeft);
 			return leftToLeft;
 		}
 		/**
@@ -82,8 +83,8 @@ public class SoundTransform {
 	
 	/**
 	 * Not to be used for manual/direct manipulation.
-	 * @see droid.geom.Point.setX()
-	 * @see droid.geom.Point.getX()
+	 * @see droid.media.SoundTransform.setLeftToRight()
+	 * @see droid.media.SoundTransform.getLeftToRight()
 	 */
 	public double leftToRight;
 		/**
@@ -91,6 +92,7 @@ public class SoundTransform {
 		 * @return
 		 */
 		public double getLeftToRight() {
+			setLeftToRight(leftToRight);
 			return leftToRight;
 		}
 		/**
@@ -105,8 +107,8 @@ public class SoundTransform {
 
 	/**
 	 * Not to be used for manual/direct manipulation.
-	 * @see droid.geom.Point.setX()
-	 * @see droid.geom.Point.getX()
+	 * @see droid.media.SoundTransform.setPan()
+	 * @see droid.media.SoundTransform.getPan()
 	 */
 	public double pan;
 		/**
@@ -114,6 +116,7 @@ public class SoundTransform {
 		 * @return
 		 */
 		public double getPan() {
+			setPan(pan);
 			return pan;
 		}
 		/**
@@ -128,8 +131,8 @@ public class SoundTransform {
 
 	/**
 	 * Not to be used for manual/direct manipulation.
-	 * @see droid.geom.Point.setX()
-	 * @see droid.geom.Point.getX()
+	 * @see droid.media.SoundTransform.setRightToLeft()
+	 * @see droid.media.SoundTransform.getRightToLeft()
 	 */
 	public double rightToLeft;
 		/**
@@ -137,6 +140,7 @@ public class SoundTransform {
 		 * @return
 		 */
 		public double getRightToLeft() {
+			setRightToLeft(rightToLeft);
 			return rightToLeft;
 		}
 		/**
@@ -151,8 +155,8 @@ public class SoundTransform {
 
 	/**
 	 * Not to be used for manual/direct manipulation.
-	 * @see droid.geom.Point.setX()
-	 * @see droid.geom.Point.getX()
+	 * @see droid.media.SoundTransform.setRightToRight()
+	 * @see droid.media.SoundTransform.getRightToRight()
 	 */
 	public double rightToRight;
 		/**
@@ -160,6 +164,7 @@ public class SoundTransform {
 		 * @return
 		 */
 		public double getRightToRight() {
+			setRightToRight(rightToRight);
 			return rightToRight;
 		}
 		/**
@@ -174,8 +179,8 @@ public class SoundTransform {
 
 	/**
 	 * Not to be used for manual/direct manipulation.
-	 * @see droid.geom.Point.setX()
-	 * @see droid.geom.Point.getX()
+	 * @see droid.media.SoundTransform.setVolume()
+	 * @see droid.media.SoundTransform.getVolume()
 	 */
 	public double volume;
 		/**
@@ -183,6 +188,7 @@ public class SoundTransform {
 		 * @return
 		 */
 		public double getVolume() {
+			setVolume(volume);
 			return volume;
 		}
 		/**
