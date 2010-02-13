@@ -41,18 +41,65 @@ public class Point {
 	 * @see droid.geom.Point.getX()
 	 */
 	public double x;
+		/**
+		 * Returns he horizontal coordinate of the point.
+		 */
+		public double getX() {
+			setX(x);
+			return x;
+		}
+		/**
+		 * Sets the horizontal coordinate of the point.
+		 */
+		public void setX(double x) {
+			this.x = x;
+			getLength();
+		}
+	
 	/**
 	 * Not to be used for manual/direct manipulation.
 	 * @see droid.geom.Point.setY()
 	 * @see droid.geom.Point.getY()
 	 */
 	public double y;
+		/**
+		 * Returns the vertical coordinate of the point.
+		 */
+		public double getY() {
+			setY(y);
+			return y;
+		}
+		/**
+		 * Sets the vertical coordinate of the point.
+		 */
+		public void setY(double y) {
+			this.y = y; 
+			getLength();
+		}
+		
+	
 	/**
 	 * Not to be used for manual/direct manipulation.
 	 * @see droid.geom.Point.setLength()
 	 * @see droid.geom.Point.getLength()
 	 */
 	public double length;
+		/**
+		 * Sets the length of the line segment from (0,0) to this point.
+		 * @param length
+		 */
+		public void setLength(double length) {
+			Point tmp = Point.polar(getLength(), Angle.getAngleByDegrees(getX(), getY()));
+			this.setX(tmp.x);
+			this.setY(tmp.y);
+		}
+		/**
+		 * Returns the length of the line segment from (0,0) to this point.
+		 */
+		public double getLength() {
+			length = PointF.length((float) x, (float) y); 
+			return length;
+		}
 	
 	/**
 	 * Creates a new point.
@@ -167,51 +214,5 @@ public class Point {
 	 */
 	public String toString() {
 		return "(x=" + getX() + ", y= " + getY() + ")";
-	}
-	
-	/**
-	 * Sets the horizontal coordinate of the point.
-	 */
-	public void setX(double x) {
-		this.x = x;
-		getLength();
-	}
-	/**
-	 * Returns he horizontal coordinate of the point.
-	 */
-	public double getX() {
-		return x;
-	}
-	
-	/**
-	 * Sets the vertical coordinate of the point.
-	 */
-	public void setY(double y) {
-		this.y = y; 
-		getLength();
-	}
-	
-	/**
-	 * Returns the vertical coordinate of the point.
-	 */
-	public double getY() {
-		return y;
-	}
-	
-	/**
-	 * Sets the length of the line segment from (0,0) to this point.
-	 * @param length
-	 */
-	public void setLength(double length) {
-		Point tmp = Point.polar(getLength(), Angle.getAngleByDegrees(getX(), getY()));
-		this.setX(tmp.x);
-		this.setY(tmp.y);
-	}
-	/**
-	 * Returns the length of the line segment from (0,0) to this point.
-	 */
-	public double getLength() {
-		length = PointF.length((float) x, (float) y); 
-		return length;
 	}
 }
