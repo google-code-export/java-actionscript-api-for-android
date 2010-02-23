@@ -280,7 +280,7 @@ public class ByteArray implements IDataInput, IDataOutput {
 	 * Reads an unsigned 32-bit integer from the byte stream.
 	 * @return
 	 */
-	public int readUnsignedInt() {
+	public long readUnsignedInt() {
 		//TODO: double check on writeUnsignedInt
 		byte b1;
 		byte b2;
@@ -485,12 +485,11 @@ public class ByteArray implements IDataInput, IDataOutput {
 	 * Writes a 32-bit unsigned integer to the byte stream.
 	 * @param value
 	 */
-	public void writeUnsignedInt(int value) {
-		//TODO: double check on readUnsignedInt
-		int b1;
-		int b2;
-		int b3;
-		int b4;
+	public void writeUnsignedInt(long value) {
+		long b1;
+		long b2;
+		long b3;
+		long b4;
 		
 		b1 = value / 16777216;
 		b2 = (value - (b1 * 16777216)) / (1 * 65536);
