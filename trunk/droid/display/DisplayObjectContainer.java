@@ -108,6 +108,7 @@ public class DisplayObjectContainer extends InteractiveObject implements IDispla
 	 * @return
 	 */
 	public DisplayObject addChild (DisplayObject child) {
+		child.parent = this;
 		displayObjects.add(child);
 			getNumChildren();
 		return null;
@@ -120,6 +121,7 @@ public class DisplayObjectContainer extends InteractiveObject implements IDispla
 	 * @return
 	 */
 	public DisplayObject addChildAt (DisplayObject child, int index) {
+		child.parent = this;
 		displayObjects.add(index, child);
 			getNumChildren();
 		return null;
@@ -204,6 +206,7 @@ public class DisplayObjectContainer extends InteractiveObject implements IDispla
 	 * @return
 	 */
 	public DisplayObject removeChild(DisplayObject child) {
+		child.parent = null;
 		displayObjects.remove(child);
 			getNumChildren();
 		return null;
@@ -215,7 +218,7 @@ public class DisplayObjectContainer extends InteractiveObject implements IDispla
 	 * @return
 	 */
 	public DisplayObject removeChildAt(int index) {
-		displayObjects.remove(index);
+		displayObjects.remove(index).parent = null;
 			getNumChildren();
 		return null;
 	}
