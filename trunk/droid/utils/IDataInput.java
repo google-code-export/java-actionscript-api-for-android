@@ -154,7 +154,7 @@ public interface IDataInput {
 	 * Reads an unsigned 32-bit integer from the byte stream or byte array.
 	 * @return
 	 */
-	public int readUnsignedInt();
+	public long readUnsignedInt();
 	
 	/**
 	 * Reads an unsigned 16-bit integer from the byte stream or byte array.

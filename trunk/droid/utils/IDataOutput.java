@@ -106,7 +106,7 @@ public interface IDataOutput {
 	 * Writes an IEEE 754 single-precision (32-bit) floating point number.
 	 * @param value
 	 */
-	public void writeFloat(double value);
+	public void writeFloat(Double value);
 	
 	/**
 	 * Writes a 32-bit signed integer.
@@ -137,7 +137,7 @@ public interface IDataOutput {
 	 * Writes a 32-bit unsigned integer.
 	 * @param value
 	 */
-	public void writeUnsignedInt(int value);
+	public void writeUnsignedInt(long value);
 	
 	/**
 	 * Writes a UTF-8 string to the byte stream.
