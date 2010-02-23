@@ -23,6 +23,7 @@ import java.util.ArrayList;
 public class DisplayObject extends EventDispatcher implements IBitmapDrawable, IDisplayObject {
 	public DisplayObject() {
 		setType("DisplayObject");
+		this.parent = null;
 	}
 	/**
 	 * [broadcast event] Dispatched when the display list is about to be updated and rendered.
@@ -293,8 +294,9 @@ public class DisplayObject extends EventDispatcher implements IBitmapDrawable, I
 	 * @return
 	 */
 	public Point globalToLocal(Point point) {
-		//TODO: implement
-		return null;
+		Point tmp = localToGlobal(new Point(this.x,this.y));
+		
+		return new Point(point.x - tmp.x, point.y - tmp.y);
 	}
 
 	/**
@@ -303,8 +305,8 @@ public class DisplayObject extends EventDispatcher implements IBitmapDrawable, I
 	 * @return
 	 */
 	public boolean hitTestObject(DisplayObject obj) {
-		//TODO: implement
-		return false;
+		return hitTestPoint(obj.x, obj.y) && hitTestPoint(obj.x + obj.width, obj.y)
+					&& hitTestPoint(obj.x + obj.width, obj.y + obj.height) && hitTestPoint(obj.x, obj.y + obj.height);
 	}
 
 	/**
@@ -324,8 +326,19 @@ public class DisplayObject extends EventDispatcher implements IBitmapDrawable, I
 	 * @return
 	 */
 	public boolean hitTestPoint(double x, double y, boolean shapeFlag) {
-		//TODO: implement
-		return false;
+		if (this.x >= x && (this.x + this.width) <= x
+				&& this.y >= y && (this.y + this.height) <= y) {
+			if (shapeFlag == true) {
+				//TODO: implement checking with shapeFlag set to true
+				return false;
+			} else {
+				return true;
+			}
+			
+		} else {
+			return false;
+		}
+		
 	}
 
 	/**
@@ -334,8 +347,16 @@ public class DisplayObject extends EventDispatcher implements IBitmapDrawable, I
 	 * @return
 	 */
 	public Point localToGlobal(Point point) {
-		//TODO: implement
-		return new Point();
+		DisplayObjectContainer parent = this.parent;
+		Point tmp = new Point(point.x, point.y);
+		
+		while (parent != null) {
+			tmp.x -= parent.x;
+			tmp.y -= parent.y;
+			parent = parent.parent;
+		}
+		
+		return new Point(tmp.x, tmp.y);
 	}
 	    protected String type;
 	    public String getType() {
