@@ -25,6 +25,8 @@
 */
 package droid.utils;
 
+import java.util.ArrayList;
+
 import droid.misc.Any;
 import droid.utils.ByteArray;
 
@@ -35,15 +37,16 @@ import droid.utils.ByteArray;
  * The ByteArray class provides methods and properties to optimize reading, writing, and working with binary data.
  */
 public class ByteArray implements IDataInput, IDataOutput {
+	public ArrayList<Byte> bytes;
 	/**
 	 * Creates a ByteArray instance representing a packed array of bytes, so that you can use the methods and properties in this class to optimize your data storage and stream.
 	 */
 	public ByteArray() {
-		
+		bytes = new ArrayList<Byte>();
 	}
 	
 	/**
-	 * Not to be used for manual/direct manipulation. 
+	 * Not to be used for manual/direct manipulation.
 	 */
 	public int bytesAvailable;
 		/**
@@ -51,12 +54,13 @@ public class ByteArray implements IDataInput, IDataOutput {
 		 * @return
 		 */
 		public int getBytesAvailable() {
+			//TODO: compute available bytes left
 			return bytesAvailable;
 		}
 		
 	
 	/**
-	 * Not to be used for manual/direct manipulation. 
+	 * Not to be used for manual/direct manipulation.
 	 */
 	public static int defaultObjectEncoding;
 		/**
@@ -102,6 +106,7 @@ public class ByteArray implements IDataInput, IDataOutput {
 		 * @return
 		 */
 		public int getLength() {
+			length = bytes.size();
 			return length;
 		}
 		/**
@@ -109,6 +114,7 @@ public class ByteArray implements IDataInput, IDataOutput {
 		 * @param value
 		 */
 		public void setLength(int value) {
+			//TODO: review implementation
 			length = value;
 		}
 	
@@ -147,7 +153,7 @@ public class ByteArray implements IDataInput, IDataOutput {
 		 * @param offset
 		 */
 		public void setPosition(int offset) {
-			position = offset;
+			position = (offset < getLength()) ? offset : -1;
 		}
 	
 	/**
@@ -162,8 +168,8 @@ public class ByteArray implements IDataInput, IDataOutput {
 	 * @return
 	 */
 	public boolean readBoolean() {
-		//TODO: implement
-		return false;
+		Byte tmp = bytes.get(getPosition());
+		return (tmp == 0) ? false : true;
 	}
 	
 	/**
@@ -171,8 +177,7 @@ public class ByteArray implements IDataInput, IDataOutput {
 	 * @return
 	 */
 	public int readByte() {
-		//TODO: implement
-		return 0;
+		return bytes.get(getPosition());
 	}
 	
 	/// Reads the number of data bytes, specified by the length parameter, from the byte stream.
@@ -209,8 +214,21 @@ public class ByteArray implements IDataInput, IDataOutput {
 	 * @return
 	 */
 	public int readInt() {
-		//TODO: implement
-		return 0;
+		//TODO: double check on writeInt
+		byte b1;
+		byte b2;
+		byte b3;
+		byte b4;
+		
+		b1 = bytes.get(getPosition());
+			setPosition(getPosition() + 1);
+		b2 = bytes.get(getPosition());
+			setPosition(getPosition() + 1);
+		b3 = bytes.get(getPosition());
+			setPosition(getPosition() + 1);
+		b4 = bytes.get(getPosition());
+			setPosition(getPosition() + 1);
+		return (b1 * 16777216) + (b2 * 65536) + (b3 * 256) + (b4 * 1);
 	}
 	
 	/**
@@ -238,8 +256,15 @@ public class ByteArray implements IDataInput, IDataOutput {
 	 * @return
 	 */
 	public int readShort() {
-		//TODO: implement
-		return 0;
+		//TODO: double check on writeShort
+		byte b1;
+		byte b2;
+		
+		b1 = bytes.get(getPosition());
+			setPosition(getPosition() + 1);
+		b2 = bytes.get(getPosition());
+			setPosition(getPosition() + 1);
+		return (b1 * 256) + (b2 * 1);
 	}
 	
 	/**
@@ -256,8 +281,21 @@ public class ByteArray implements IDataInput, IDataOutput {
 	 * @return
 	 */
 	public int readUnsignedInt() {
-		//TODO: implement
-		return 0;
+		//TODO: double check on writeUnsignedInt
+		byte b1;
+		byte b2;
+		byte b3;
+		byte b4;
+		
+		b1 = bytes.get(getPosition());
+			setPosition(getPosition() + 1);
+		b2 = bytes.get(getPosition());
+			setPosition(getPosition() + 1);
+		b3 = bytes.get(getPosition());
+			setPosition(getPosition() + 1);
+		b4 = bytes.get(getPosition());
+			setPosition(getPosition() + 1);
+		return (b1 * 16777216) + (b2 * 65536) + (b3 * 256) + (b4 * 1);
 	}
 	
 	/**
@@ -265,8 +303,15 @@ public class ByteArray implements IDataInput, IDataOutput {
 	 * @return
 	 */
 	public int readUnsignedShort() {
-		//TODO: implement
-		return 0;
+		//TODO: double check on writeUnsignedShord
+		byte b1;
+		byte b2;
+		
+		b1 = bytes.get(getPosition());
+			setPosition(getPosition() + 1);
+		b2 = bytes.get(getPosition());
+			setPosition(getPosition() + 1);
+		return (b1 * 256) + (b2 * 1);
 	}
 	
 	/**
@@ -308,7 +353,9 @@ public class ByteArray implements IDataInput, IDataOutput {
 	 * @param value
 	 */
 	public void writeBoolean(boolean value) {
-		//TODO: implement
+		Byte tmp = new Byte((byte) ((value) ? 1 : 0));
+		bytes.add(tmp);
+			getLength();
 	}
 	
 	/**
@@ -316,7 +363,10 @@ public class ByteArray implements IDataInput, IDataOutput {
 	 * @param value
 	 */
 	public void writeByte(int value) {
-		//TODO: implement
+		char cvalue = (char) value;
+		Byte tmp = new Byte((byte) cvalue);
+		bytes.add(tmp);
+			getLength();
 	}
 	
 	/**
@@ -342,7 +392,19 @@ public class ByteArray implements IDataInput, IDataOutput {
 	 * @param length
 	 */
 	public void writeBytes(ByteArray bytes, int offset, int length) {
-		//TODO: implement
+		if (offset < 0) { offset = 0; }
+		int range = offset;
+		
+		if (length < 0) { length = bytes.bytes.size(); }
+			range += length;
+		
+		if (range > bytes.bytes.size() ) { range = bytes.bytes.size(); }
+		
+		Byte tmp;
+		for (int i = offset; i < range; i++) {
+			tmp = bytes.bytes.get(i);
+			this.bytes.add(tmp);
+		}
 	}
 	
 	/**
@@ -357,7 +419,7 @@ public class ByteArray implements IDataInput, IDataOutput {
 	 * Writes an IEEE 754 single-precision (32-bit) floating-point number to the byte stream.
 	 * @param value
 	 */
-	public void writeFloat(double value) {
+	public void writeFloat(Double value) {
 		//TODO: implement
 	}
 	
@@ -366,7 +428,26 @@ public class ByteArray implements IDataInput, IDataOutput {
 	 * @param value
 	 */
 	public void writeInt(int value) {
-		//TODO: implement
+		//TODO: double check on readInt
+			int b1;
+			int b2;
+			int b3;
+			int b4;
+			/*double dvalue = value;
+			if (dvalue < 0) {
+				//do negative
+				value *= -1; //remove negative
+			}*/
+			b1 = value / 16777216;
+			b2 = (value - (b1 * 16777216)) / (1 * 65536);
+			b3 = (value - (b1 * 16777216) - (b2 * 65536)) / (1 * 256);
+			b4 = (value - (b1 * 16777216) - (b2 * 65536) - (b3 * 256)) / (1 * 1);
+			
+			bytes.add((byte) b1);
+			bytes.add((byte) b2);
+			bytes.add((byte) b3);
+			bytes.add((byte) b4);
+				getLength();
 	}
 	
 	/**
@@ -388,7 +469,16 @@ public class ByteArray implements IDataInput, IDataOutput {
 	 * @param value
 	 */
 	public void writeShort(int value) {
-		//TODO: implement
+		//TODO: double check on readShort
+		int b1;
+		int b2;
+
+		b1 = value / 256;
+		b2 = value - (b1 * 256) / (1 * 1);
+		
+		bytes.add((byte) b1);
+		bytes.add((byte) b2);
+			getLength();
 	}
 	
 	/**
@@ -396,7 +486,22 @@ public class ByteArray implements IDataInput, IDataOutput {
 	 * @param value
 	 */
 	public void writeUnsignedInt(int value) {
-		//TODO: implement
+		//TODO: double check on readUnsignedInt
+		int b1;
+		int b2;
+		int b3;
+		int b4;
+		
+		b1 = value / 16777216;
+		b2 = (value - (b1 * 16777216)) / (1 * 65536);
+		b3 = (value - (b1 * 16777216) - (b2 * 65536)) / (1 * 256);
+		b4 = (value - (b1 * 16777216) - (b2 * 65536) - (b3 * 256)) / (1 * 1);
+		
+		bytes.add((byte) b1);
+		bytes.add((byte) b2);
+		bytes.add((byte) b3);
+		bytes.add((byte) b4);
+			getLength();
 	}
 	
 	/**
@@ -404,7 +509,9 @@ public class ByteArray implements IDataInput, IDataOutput {
 	 * @param value
 	 */
 	public void writeUTF(String value) {
-		//TODO: implement
+		for (int i = 0; i < value.length(); i++) {
+			bytes.add((byte) value.charAt(i));
+		}
 	}
 	
 	/**
@@ -412,6 +519,9 @@ public class ByteArray implements IDataInput, IDataOutput {
 	 * @param value
 	 */
 	public void writeUTFBytes(String value) {
-		//TODO: implement
+		//TODO: double check difference of writeUTF and writeUTFBytes
+		for (int i = 0; i < value.length(); i++) {
+			bytes.add((byte) value.charAt(i));
+		}
 	}
 }
