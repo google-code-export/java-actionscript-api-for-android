@@ -111,7 +111,7 @@ public class Point {
 		 * @param length
 		 */
 		public void setLength(double length) {
-			Point tmp = Point.polar(getLength(), Angle.getAngleByDegrees(getX(), getY()));
+			Point tmp = Point.polar(length, Angle.getAngleByRadians(getX(), getY()));
 			this.setX(tmp.x);
 			this.setY(tmp.y);
 		}
