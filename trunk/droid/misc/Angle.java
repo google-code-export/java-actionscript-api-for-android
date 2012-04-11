@@ -41,7 +41,7 @@ public class Angle {
 		return radians / (Math.PI / 180);
 	}
 	public static double getAngleByRadians(double distanceX, double distanceY) {
-		return Math.atan2(distanceX, distanceY);
+		return Math.atan2(distanceY, distanceX);
 	}
 	public static double getAngleByDegrees(double distanceX, double distanceY) {
 		return Angle.getDegrees(Angle.getAngleByRadians(distanceX, distanceY));
